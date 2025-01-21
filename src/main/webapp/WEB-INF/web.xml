@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                      https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0"
+         metadata-complete="true">
+
+    <context-param>
+        <param-name>Key1</param-name>
+        <param-value>Val1</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>hello-servlet</servlet-name>
+        <servlet-class>ua.ithillel.jakartaee.web.HelloServlet</servlet-class>
+        <init-param>
+            <param-name>param1</param-name>
+            <param-value>value1</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>hello-servlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>App-JSP</servlet-name>
+        <jsp-file>/app.jsp</jsp-file>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>App-JSP</servlet-name>
+        <url-pattern>/app.jsp</url-pattern>
+    </servlet-mapping>
+    
+    <listener>
+        <listener-class>ua.ithillel.jakartaee.web.listener.AppWebContextListener</listener-class>
+    </listener>
+
+</web-app>

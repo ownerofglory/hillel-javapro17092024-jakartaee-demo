@@ -1,0 +1,43 @@
+* {
+    font-family: Verdana;
+}
+
+body {
+    margin: 0;
+}
+
+
+#site-menu {
+    list-style: none;
+    display: flex;
+}
+
+#site-menu li {
+    padding: 10px 12px 10px 12px; /* top right bottom left*/
+}
+
+#site-logo {
+    width: 36vw;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #3c76e2;
+    margin: 0;
+}
+
+#site-menu li a {
+    text-decoration: none;
+}
+
+#site-menu li a:visited {
+    color: inherit;
+}
+
+#site-menu li a:hover {
+    color: rgba(187, 210, 221, 0.8);
+}
