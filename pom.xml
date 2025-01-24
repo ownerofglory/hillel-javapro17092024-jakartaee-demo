@@ -16,6 +16,8 @@
 
         <jakarta.servlet.version>6.1.0</jakarta.servlet.version>
         <lombok.version>1.18.36</lombok.version>
+        <log4j.version>2.24.3</log4j.version>
+        <slf4j.version>2.0.16</slf4j.version>
     </properties>
 
     <dependencies>
@@ -30,6 +32,26 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
     </dependencies>
 
@@ -48,6 +70,54 @@
                             <version>1.18.36</version>
                         </path>
                     </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven3-plugin</artifactId>
+                <version>1.10.5</version>
+                <configuration>
+                    <container>
+                        <containerId>tomcat10x</containerId>
+                        <type>remote</type>
+                    </container>
+                    <configuration>
+                        <type>runtime</type>
+                        <properties>
+                            <cargo.hostname>${tomcat.host}</cargo.hostname>
+                            <cargo.protocol>https</cargo.protocol>
+                            <cargo.port>443</cargo.port>
+                            <cargo.servlet.port>443</cargo.servlet.port>
+                            <cargo.remote.username>${tomcat.user}</cargo.remote.username>
+                            <cargo.remote.password>${tomcat.password}</cargo.remote.password>
+                            <cargo.tomcat.manager.url>${tomcat.managerUrl}</cargo.tomcat.manager.url>
+                        </properties>
+                    </configuration>
+
+                    <artifactInstaller>
+                        <groupId>org.ow2.jonas.assemblies.profiles</groupId>
+                        <artifactId>jonas-full</artifactId>
+                        <version>5.2.1</version>
+                        <classifier>bin</classifier>
+                    </artifactInstaller>
+                    <deployables>
+                        <deployable>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${project.artifactId}</artifactId>
+                            <type>war</type>
+                            <properties>
+                                <context>hillel-jakarta</context>
+                            </properties>
+                        </deployable>
+                    </deployables>
                 </configuration>
             </plugin>
         </plugins>
