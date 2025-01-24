@@ -10,7 +10,7 @@ import ua.ithillel.jakartaee.service.HelloService;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/hello")
+//@WebServlet(urlPatterns = "/hello")
 public class HelloServlet extends HttpServlet {
     private HelloService helloService;
 
